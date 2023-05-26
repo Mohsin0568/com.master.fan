@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.master.fan.artist.dto.Artist;
+import com.master.fan.artist.dto.ArtistDto;
 import com.master.fan.artist.service.ArtistService;
 
 import reactor.core.publisher.Mono;
@@ -27,11 +27,17 @@ public class ArtistControllerTest{
 	private final static String ARTIST_CONTROLLER_URL = "/v1/artist";
 	
 	@Test
-	public void getArtistInfoByIdTest() {
+	void getArtistInfoByIdTest() {
 		
-		Artist artist = new Artist("1", "testArist", "testImageSource", "testUrl", 1);
+		ArtistDto artist = ArtistDto.builder()
+				.id("1")
+				.name("Mohsin")
+				.imgSrc("//some-base-url/colosseum.jpg")
+				.url("/colosseum-tickets/artist/22")
+				.rank(1)
+				.build();
 		
-		when(artistService.getArtist("1")).thenReturn(Mono.just(artist));
+		when(artistService.getArtistData("1")).thenReturn(Mono.just(artist));
 		
 		webTestClient
 			.get()

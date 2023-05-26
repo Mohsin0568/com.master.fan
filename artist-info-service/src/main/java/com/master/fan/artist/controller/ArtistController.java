@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.master.fan.artist.dto.Artist;
+import com.master.fan.artist.dto.ArtistDto;
 import com.master.fan.artist.service.ArtistService;
 
 import reactor.core.publisher.Mono;
@@ -27,9 +27,8 @@ public class ArtistController {
 	ArtistService artistService;
 	
 	@GetMapping("/{id}")
-	public Mono<Artist> getArtistInfoById(@PathVariable String id){
-		Mono<Artist> monoArtist = artistService.getArtist(id);
-		return monoArtist;
+	public Mono<ArtistDto> getArtistInfoById(@PathVariable String id){
+		return artistService.getArtistData(id);
 	}
 	
 
