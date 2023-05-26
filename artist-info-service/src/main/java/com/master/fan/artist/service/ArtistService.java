@@ -12,6 +12,7 @@ import com.master.fan.artist.client.ArtistRestClient;
 import com.master.fan.artist.dto.ArtistDto;
 import com.master.fan.artist.dto.EventsDto;
 import com.master.fan.artist.entity.Artist;
+import com.master.fan.artist.exceptions.ArtistNotFoundException;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -71,7 +72,7 @@ public class ArtistService {
 	 */
 	public Mono<Artist> getArtistById(String id) {
 		Flux<Artist> allArtists = getAllArtistsFromClient();
-		return  allArtists.filter(artist -> artist.getId().equals(id)).take(1).next().switchIfEmpty(Mono.error(new RuntimeException("Given id not found")));
+		return  allArtists.filter(artist -> artist.getId().equals(id)).take(1).next().switchIfEmpty(Mono.error(new ArtistNotFoundException("Artist not found with id " + id)));
 	}	
 	
 	private ArtistDto getArtistDTO(Artist artist, List<EventsDto> events) {		
