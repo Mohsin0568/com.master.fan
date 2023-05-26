@@ -84,7 +84,7 @@ class ArtistServiceTest {
 		var result = artistService.getArtistData("4");
 		
 		StepVerifier.create(result)
-			.expectErrorMessage("Given id not found")
+			.expectErrorMessage("Artist not found with id 4")
 			.verify();
 	}
 
