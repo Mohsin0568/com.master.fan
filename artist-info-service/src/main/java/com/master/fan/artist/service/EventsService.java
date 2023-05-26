@@ -15,9 +15,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * @author mohsin
+ * @author mohsin 
  * 
- * This class will have business logic related to events
+ * EventsService will have business logic related to events
  *
  */
 
@@ -30,28 +30,50 @@ public class EventsService {
 	@Autowired
 	VenueService venueService;
 	
+	
+	/**
+	 * 
+	 * @return Flux<Events>, this will return all events fetched from events service.
+	 * 
+	 * This method will connect with Events service and fetch all events data from it.
+	 */
 	public Flux<Events> getAllEvents(){
+		// get all events data
 		return restClient.retrieveEvents(); //.log();
 	}
 	
+	/**
+	 * 
+	 * @param artistId
+	 * @return Flux<EventsDto> This will return all events in EventsDTO object for an artist, eventsDto object will not have venues information
+	 * 
+	 * This method will return all events by artist id. Events will not have venue details
+	 */
 	public Flux<EventsDto> getEventsByArtistId(String artistId){		
 		
-		return getAllEvents()
+		return getAllEvents() // this will fetch only events data base on artist id
 				.filter(event -> event.getArtists()
 									.stream()
 									.anyMatch(artist -> artist.getId().equalsIgnoreCase(artistId))
 				).map(this :: convertEventToEventDto);
 	}
 	
-	public Flux<EventsDto> getEventsWithVenuesByArtistId(String artistId){
-		
-		return getAllEvents()
-				.filter(event -> event.getArtists()
+	/**
+	 * 
+	 * @param artistId
+	 * @return Flux<EventsDto> This will return all events in EventsDTO object for an artist, eventsDto object will also have venues information
+	 * 
+	 * This method will return all events by artist id along with event venue.
+	 */
+	public Flux<EventsDto> getEventsWithVenuesByArtistId(String artistId){		
+
+		return getAllEvents() // this will fetch all events from upstream server
+				.filter(event -> event.getArtists() // fitler events based on artist id
 									.stream()
 									.anyMatch(artist -> artist.getId().equalsIgnoreCase(artistId))
 				).flatMap(event -> {
-						Mono<VenueDto> eventVenue = venueService.fetchVenueById(event.getVenue().getId());
-						return eventVenue.map(venue -> convertEventToEventDto(event, venue));
+						Mono<VenueDto> eventVenue = venueService.fetchVenueById(event.getVenue().getId()); // get Venues for each event
+						return eventVenue.map(venue -> convertEventToEventDto(event, venue)); // map data to event DTO
 					
 				});		
 	}
