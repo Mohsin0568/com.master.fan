@@ -59,6 +59,10 @@ public class ArtistDto{
 		return events;
 	}
 	
+	public static ArtistDtoBuilder builder() {
+		return new ArtistDtoBuilder();
+	}
+	
 	public static class ArtistDtoBuilder {
 		
 		private String id;
@@ -69,31 +73,37 @@ public class ArtistDto{
 		
 		private List<EventsDto> events;
 
-		public void id(String id) {
+		public ArtistDtoBuilder id(String id) {
 			this.id = id;
+			return this;
 		}
 
-		public void name(String name) {
+		public ArtistDtoBuilder name(String name) {
 			this.name = name;
+			return this;
 		}
 
-		public void imgSrc(String imgSrc) {
+		public ArtistDtoBuilder imgSrc(String imgSrc) {
 			this.imgSrc = imgSrc;
+			return this;
 		}
 
-		public void url(String url) {
+		public ArtistDtoBuilder url(String url) {
 			this.url = url;
+			return this;
 		}
 
-		public void rank(int rank) {
+		public ArtistDtoBuilder rank(int rank) {
 			this.rank = rank;
+			return this;
 		}
 
-		public void events(List<EventsDto> events) {
+		public ArtistDtoBuilder events(List<EventsDto> events) {
 			this.events = events;
+			return this;
 		}
 		
-		public ArtistDto builder() {
+		public ArtistDto build() {
 			return new ArtistDto(this);
 		}
 		
