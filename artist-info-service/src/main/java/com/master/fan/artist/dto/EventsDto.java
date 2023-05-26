@@ -23,6 +23,8 @@ public class EventsDto {
 	private boolean hiddenFromSearch;
 	private VenueDto venue;
 	
+	public EventsDto() {} // this should be deleted
+	
 	private EventsDto(EventsDtoBuilder builder) {		
 		this.id = builder.id;
 		this.title = builder.title;

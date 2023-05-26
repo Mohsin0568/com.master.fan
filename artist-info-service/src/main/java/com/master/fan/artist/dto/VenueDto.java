@@ -21,6 +21,8 @@ public class VenueDto {
 	private String city;
 	private String name;
 	
+	public VenueDto() {} // this should be deleted
+	
 	private VenueDto(VenueDtoBuilder builder) {
 		this.id = builder.id;
 		this.url = builder.url;

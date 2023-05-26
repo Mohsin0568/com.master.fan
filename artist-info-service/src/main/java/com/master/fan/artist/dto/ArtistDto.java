@@ -26,6 +26,8 @@ public class ArtistDto{
 	
 	private List<EventsDto> events;
 	
+	public ArtistDto() {} // this should be removed
+	
 	private ArtistDto(ArtistDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
