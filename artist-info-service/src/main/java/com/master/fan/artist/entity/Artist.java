@@ -51,4 +51,9 @@ public class Artist {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
+	
+	@Override
+	public String toString() {
+		return "Artist [id=" + id + "]";
+	}
 }

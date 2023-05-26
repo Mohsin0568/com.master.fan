@@ -2,7 +2,7 @@ package com.master.fan.artist.dto;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * @author mohsin
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EventsDto {
 	
 	private String id;
@@ -69,29 +69,36 @@ public class EventsDto {
 		private String hiddenFromSearch;
 		private VenueDto venue;
 		
-		public void id(String id) {
+		public EventsDtoBuilder id(String id) {
 			this.id = id;
+			return this;
 		}
-		public void title(String title) {
+		public EventsDtoBuilder title(String title) {
 			this.title = title;
+			return this;
 		}
-		public void dateStatus(String dateStatus) {
+		public EventsDtoBuilder dateStatus(String dateStatus) {
 			this.dateStatus = dateStatus;
+			return this;
 		}
-		public void timeZone(String timeZone) {
+		public EventsDtoBuilder timeZone(String timeZone) {
 			this.timeZone = timeZone;
+			return this;
 		}
-		public void startDate(LocalDateTime startDate) {
+		public EventsDtoBuilder startDate(LocalDateTime startDate) {
 			this.startDate = startDate;
+			return this;
 		}
-		public void hiddenFromSearch(String hiddenFromSearch) {
+		public EventsDtoBuilder hiddenFromSearch(String hiddenFromSearch) {
 			this.hiddenFromSearch = hiddenFromSearch;
+			return this;
 		}
-		public void venue(VenueDto venue) {
+		public EventsDtoBuilder venue(VenueDto venue) {
 			this.venue = venue;
+			return this;
 		}	
 		
-		public EventsDto builder() {
+		public EventsDto build() {
 			return new EventsDto(this);
 		}
 	}

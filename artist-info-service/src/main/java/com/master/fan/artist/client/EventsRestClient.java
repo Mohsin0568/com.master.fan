@@ -8,33 +8,34 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.master.fan.artist.entity.Artist;
+import com.master.fan.artist.entity.Events;
 
 import reactor.core.publisher.Flux;
 
 /**
  * @author mohsin
  * 
- * This class will make a call to artists upstream service to fetch artists information
+ * This class will make a call to events upstream service to fetch events data
  *
  */
 
 @Component
-public class ArtistRestClient {
+public class EventsRestClient {
 	
 	@Autowired
 	WebClient webClient;
 	
-	@Value("${client.rest.artist.url}")
-	private String artistRestUrl;
+	@Value("${client.rest.events.url}")
+	private String eventsRestUrl;
 	
-	public Flux<Artist> retrieveArtists(){
+	public Flux<Events> retrieveEvents(){
 		
 		return webClient
 			.get()
-			.uri(artistRestUrl)
+			.uri(eventsRestUrl)
 			.retrieve()
-			.bodyToFlux(Artist.class);
+			.bodyToFlux(Events.class);
 			//.log();		
 	}
+
 }

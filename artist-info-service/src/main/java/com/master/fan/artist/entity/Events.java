@@ -75,5 +75,9 @@ public class Events {
 	public void setVenue(Venue venue) {
 		this.venue = venue;
 	}
+	@Override
+	public String toString() {
+		return "Events [id=" + id + ", title=" + title + ", artists=" + artists + "]";
+	}
 
 }
