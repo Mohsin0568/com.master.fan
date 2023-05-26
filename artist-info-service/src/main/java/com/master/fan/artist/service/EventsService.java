@@ -25,10 +25,10 @@ import reactor.core.publisher.Mono;
 public class EventsService {
 	
 	@Autowired
-	EventsRestClient restClient;
+	private EventsRestClient restClient;
 	
 	@Autowired
-	VenueService venueService;
+	private VenueService venueService;
 	
 	
 	/**

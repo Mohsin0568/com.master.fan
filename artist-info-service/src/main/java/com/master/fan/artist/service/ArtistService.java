@@ -27,10 +27,10 @@ import reactor.core.publisher.Mono;
 public class ArtistService {
 	
 	@Autowired
-	ArtistRestClient restClient;
+	private ArtistRestClient restClient;
 	
 	@Autowired
-	EventsService eventsService;
+	private EventsService eventsService;
 	
 	/**
 	 * 

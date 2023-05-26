@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 public class VenueService {
 	
 	@Autowired
-	VenuesRestClient restClient;
+	private VenuesRestClient restClient;
 	
 	/**
 	 * 
