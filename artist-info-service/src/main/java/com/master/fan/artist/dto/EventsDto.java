@@ -20,7 +20,7 @@ public class EventsDto {
 	private String dateStatus;
 	private String timeZone;
 	private LocalDateTime startDate;
-	private String hiddenFromSearch;
+	private boolean hiddenFromSearch;
 	private VenueDto venue;
 	
 	private EventsDto(EventsDtoBuilder builder) {		
@@ -48,7 +48,7 @@ public class EventsDto {
 	public LocalDateTime getStartDate() {
 		return startDate;
 	}
-	public String getHiddenFromSearch() {
+	public boolean getHiddenFromSearch() {
 		return hiddenFromSearch;
 	}
 	public VenueDto getVenue() {
@@ -66,7 +66,7 @@ public class EventsDto {
 		private String dateStatus;
 		private String timeZone;
 		private LocalDateTime startDate;
-		private String hiddenFromSearch;
+		private boolean hiddenFromSearch;
 		private VenueDto venue;
 		
 		public EventsDtoBuilder id(String id) {
@@ -89,7 +89,7 @@ public class EventsDto {
 			this.startDate = startDate;
 			return this;
 		}
-		public EventsDtoBuilder hiddenFromSearch(String hiddenFromSearch) {
+		public EventsDtoBuilder hiddenFromSearch(boolean hiddenFromSearch) {
 			this.hiddenFromSearch = hiddenFromSearch;
 			return this;
 		}

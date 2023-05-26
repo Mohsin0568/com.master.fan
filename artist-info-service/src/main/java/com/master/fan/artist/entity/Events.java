@@ -23,7 +23,7 @@ public class Events {
 	private String dateStatus;
 	private String timeZone;
 	private LocalDateTime startDate;
-	private String hiddenFromSearch;
+	private boolean hiddenFromSearch;
 	private List<Artist> artists;
 	private Venue venue;
 	
@@ -57,10 +57,10 @@ public class Events {
 	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
-	public String getHiddenFromSearch() {
+	public boolean getHiddenFromSearch() {
 		return hiddenFromSearch;
 	}
-	public void setHiddenFromSearch(String hiddenFromSearch) {
+	public void setHiddenFromSearch(boolean hiddenFromSearch) {
 		this.hiddenFromSearch = hiddenFromSearch;
 	}
 	public List<Artist> getArtists() {
