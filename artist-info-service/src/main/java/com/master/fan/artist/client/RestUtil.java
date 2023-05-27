@@ -37,14 +37,14 @@ public class RestUtil {
 			if(clientResponse.statusCode().value() == 429) { // will retry for this error code
 				
 				return Mono.error(
-						new ArtistServiceServerException("Got too many request error from artist service")
+						new ArtistServiceServerException("Service Unavailable at the moment")
 				);
 			}
 			
 			return clientResponse.bodyToMono(String.class) // will not retry for remaining error codes.
 				.flatMap(responseBody -> {
 					return Mono.error(
-							new ArtistServiceClientException(responseBody, clientResponse.statusCode().value())
+							new ArtistServiceClientException("Service Unavailable at the moment", clientResponse.statusCode().value())
 						);
 				});
 		};
@@ -57,7 +57,7 @@ public class RestUtil {
 			return clientResponse.bodyToMono(String.class)
 				.flatMap(responseBody -> {
 					return Mono.error(
-							new ArtistServiceServerException(responseBody)
+							new ArtistServiceServerException("Service Unavailable at the moment")
 						);
 				});
 		};
