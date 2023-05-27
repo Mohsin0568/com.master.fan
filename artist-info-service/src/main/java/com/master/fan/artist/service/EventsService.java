@@ -3,6 +3,8 @@
  */
 package com.master.fan.artist.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,7 @@ public class EventsService {
 	@Autowired
 	private VenueService venueService;
 	
+	Logger log = LoggerFactory.getLogger(EventsService.class);
 	
 	/**
 	 * 
@@ -65,16 +68,23 @@ public class EventsService {
 	 * 
 	 * This method will return all events by artist id along with event venue.
 	 */
-	public Flux<EventsDto> getEventsWithVenuesByArtistId(String artistId){		
+	public Flux<EventsDto> getEventsWithVenuesByArtistId(String artistId){
+		
+		var events = getAllEvents();
+		
+		log.info("Fetched all events for artist id {}, now will fitler artist events and send back", artistId);
 
-		return getAllEvents() // this will fetch all events from upstream server
+		return events // this will fetch all events from upstream server
 				.filter(event -> event.getArtists() // fitler events based on artist id
 									.stream()
-									.anyMatch(artist -> artist.getId().equalsIgnoreCase(artistId))
-				).flatMap(event -> {
-						Mono<VenueDto> eventVenue = venueService.fetchVenueById(event.getVenue().getId()); // get Venues for each event
-						return eventVenue.map(venue -> convertEventToEventDto(event, venue)); // map data to event DTO
+									.anyMatch(artist -> artist.getId().equalsIgnoreCase(artistId))									
+				).flatMap(event -> { // this will be executed only for given artist events object					
 					
+					log.info("fetching venue information for event with id {} and venue id {}", event.getId(), event.getVenue().getId());
+					
+					Mono<VenueDto> eventVenue = venueService.fetchVenueById(event.getVenue().getId()); // get Venues for each event
+					
+					return eventVenue.map(venue -> convertEventToEventDto(event, venue)); // map events and venue data to event DTO				
 				});		
 	}
 	

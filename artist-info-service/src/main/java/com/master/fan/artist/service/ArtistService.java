@@ -5,6 +5,8 @@ package com.master.fan.artist.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,8 @@ public class ArtistService {
 	@Autowired
 	private EventsService eventsService;
 	
+	Logger log = LoggerFactory.getLogger(ArtistService.class);
+	
 	/**
 	 * 
 	 * @return Flux<Artist>, this will return all artists from artist service.
@@ -52,10 +56,14 @@ public class ArtistService {
 	 */
 	public Mono<ArtistDto> getArtistData(String artistId){
 		
-		return getArtistById(artistId).flatMap(artist -> {			
+		return getArtistById(artistId).flatMap(artist -> {		
+			
+			log.info("Successfully fetched artist data with id {}", artistId);
 			
 			// get Events Data
 			Flux<EventsDto> events = eventsService.getEventsWithVenuesByArtistId(artistId);
+			
+			log.info("succesfully fetched events data in artist service layer");
 			
 			// map artist, events and venues data to DTO
 			return events.collectList().map(eventsList -> getArtistDTO(artist, eventsList));
@@ -71,8 +79,14 @@ public class ArtistService {
 	 * This will throw exception if artist with given id not found.
 	 */
 	public Mono<Artist> getArtistById(String id) {
+		
 		Flux<Artist> allArtists = getAllArtistsFromClient();
-		return  allArtists.filter(artist -> artist.getId().equals(id)).take(1).next().switchIfEmpty(Mono.error(new ArtistNotFoundException("Artist not found with id " + id)));
+		
+		return  allArtists
+					.filter(artist -> artist.getId().equals(id)) // this will filter request artist from all artists
+					.take(1) // this will take the first artist which matches the filter
+					.next() // this will convert Flux to Mono
+					.switchIfEmpty(Mono.error(new ArtistNotFoundException("Artist not found with id " + id))); // throw exception if artist not found
 	}	
 	
 	private ArtistDto getArtistDTO(Artist artist, List<EventsDto> events) {		
