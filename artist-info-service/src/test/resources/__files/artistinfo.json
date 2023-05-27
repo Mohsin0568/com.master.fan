@@ -1,0 +1,65 @@
+[
+   {
+      "name":"HRH Prog",
+      "id":"21",
+      "imgSrc":"//some-base-url/hrh-prog.jpg",
+      "url":"/hrh-prog-tickets/artist/21",
+      "rank":1
+   },
+   {
+      "name":"Colosseum",
+      "id":"22",
+      "imgSrc":"//some-base-url/colosseum.jpg",
+      "url":"/colosseum-tickets/artist/22",
+      "rank":2
+   },
+   {
+      "name":"Mostly Autumn",
+      "id":"23",
+      "imgSrc":"//some-base-url/mostly-autumn.jpg",
+      "url":"/mostly-autumn-tickets/artist/23",
+      "rank":3
+   },
+   {
+      "name":"The Enid",
+      "id":"24",
+      "imgSrc":"//some-base-url/the-enid.jpg",
+      "url":"/the-enid-tickets/artist/24",
+      "rank":4
+   },
+   {
+      "name":"Threshold",
+      "id":"25",
+      "imgSrc":"//some-base-url/threshold.jpg",
+      "url":"/threshold-tickets/artist/25",
+      "rank":5
+   },
+   {
+      "name":"Ozric Tentacles",
+      "id":"26",
+      "imgSrc":"//some-base-url/ozric-tentacles.jpg",
+      "url":"/ozric-tentacles-tickets/artist/26",
+      "rank":6
+   },
+   {
+      "name":"The Crazy World of Arthur Brown",
+      "id":"27",
+      "imgSrc":"//some-base-url/arthur-brown.jpg",
+      "url":"/the-crazy-world-of-arthur-brown-tickets/artist/27",
+      "rank":7
+   },
+   {
+      "name":"Moon Safari",
+      "id":"28",
+      "imgSrc":"//some-base-url/moon-safari.jpg",
+      "url":"/moon-safari-tickets/artist/28",
+      "rank":8
+   },
+   {
+      "name":"Magenta",
+      "id":"29",
+      "imgSrc":"//some-base-url/magenta.jpg",
+      "url":"/magenta-tickets/artist/29",
+      "rank":9
+   }
+]
