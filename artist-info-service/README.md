@@ -13,6 +13,12 @@ This microservice is a clever tool that gives you all the information you need a
 ```
 Note: Make sure our command/terminal is in artist-info-service foler
 
+## Running the test cases locally
+
+```
+./mvnw test
+```
+
 ## Execute artist details endpoint
 
 ```
@@ -26,11 +32,13 @@ I had two approaches for designing an API which will give me artist information 
 
 I have taken **2nd approach** to implement the solution and below are some highlights of the implementation.
 1. Have used Spring Webflux (which is non blocking web framework) to implement the solution.
-2. Used WebClient api to connect with artist, events and venue endpoints.
-3. Api will respond back with status code 404 if artist details are not found with given id.
-4. Api will respond back with status code 500 if we are unable to connect with any of the three services.
-5. Our endpoint will retry 3 times within a time gap of 1 sec if there is failure connecting with upstream services.
-6. Retry will happen only for 429 and 5xx error codes.
-7. Retry attempts and time gap can be configured in properties file.
-8. Have defined response timeout as 10 seconds, again this time can be configured in properties file.
-9. Have written integration tests in file [ArtistRouterIntegrationTest.java](https://github.com/Mohsin0568/com.master.fan/blob/master/artist-info-service/src/test/java/com/master/fan/artist/router/ArtistRouterIntegrationTest.java), where I have tested few positives and negetive scenarios.
+2. Endpoint v2/artist/{id} implementation is written in [ArtistRouter.java](https://github.com/Mohsin0568/com.master.fan/blob/master/artist-info-service/src/main/java/com/master/fan/artist/router/ArtistRouter.java).
+3. Used WebClient api to connect with artist, events and venue endpoints.
+4. Api will respond back with status code 404 if artist details are not found with given id.
+5. Api will respond back with status code 500 if we are unable to connect with any of the three services.
+6. Our endpoint will retry 3 times within a time gap of 1 sec if there is failure connecting with upstream services.
+7. Retry will happen only for 429 and 5xx error codes.
+8. Retry attempts and time gap can be configured in properties file.
+9. Have defined response timeout as 10 seconds, again this time can be configured in properties file.
+10. Have written integration tests in file [ArtistRouterIntegrationTest.java](https://github.com/Mohsin0568/com.master.fan/blob/master/artist-info-service/src/test/java/com/master/fan/artist/router/ArtistRouterIntegrationTest.java), where I have tested few positives and negetive scenarios.
+11. Have used Sleuth library for logs observability.
