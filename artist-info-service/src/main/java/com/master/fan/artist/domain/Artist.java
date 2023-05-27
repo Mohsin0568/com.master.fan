@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.master.fan.artist.entity;
+package com.master.fan.artist.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

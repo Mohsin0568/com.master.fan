@@ -17,11 +17,11 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.master.fan.artist.client.EventsRestClient;
+import com.master.fan.artist.domain.Artist;
+import com.master.fan.artist.domain.Events;
+import com.master.fan.artist.domain.Venue;
 import com.master.fan.artist.dto.EventsDto;
 import com.master.fan.artist.dto.VenueDto;
-import com.master.fan.artist.entity.Artist;
-import com.master.fan.artist.entity.Events;
-import com.master.fan.artist.entity.Venue;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

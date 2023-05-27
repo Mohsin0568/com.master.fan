@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.master.fan.artist.client.ArtistRestClient;
+import com.master.fan.artist.domain.Artist;
 import com.master.fan.artist.dto.ArtistDto;
 import com.master.fan.artist.dto.EventsDto;
-import com.master.fan.artist.entity.Artist;
 import com.master.fan.artist.exceptions.ArtistNotFoundException;
 
 import reactor.core.publisher.Flux;

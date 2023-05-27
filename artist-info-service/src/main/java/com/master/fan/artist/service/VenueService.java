@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.master.fan.artist.client.VenuesRestClient;
+import com.master.fan.artist.domain.Venue;
 import com.master.fan.artist.dto.VenueDto;
-import com.master.fan.artist.entity.Venue;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

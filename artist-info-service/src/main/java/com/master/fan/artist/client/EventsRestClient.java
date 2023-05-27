@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.master.fan.artist.entity.Events;
+import com.master.fan.artist.domain.Events;
 import com.master.fan.artist.util.Constants;
 
 import reactor.core.publisher.Flux;

@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.master.fan.artist.client.VenuesRestClient;
-import com.master.fan.artist.entity.Venue;
+import com.master.fan.artist.domain.Venue;
 
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
