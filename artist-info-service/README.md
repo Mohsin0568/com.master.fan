@@ -27,8 +27,8 @@ curl --include http://localhost:8080/v2/artist/21
 ## System Design
 
 I had two approaches for designing an API which will give me artist information by its Id.
-1. Load all data related to artists, events and venues from upstream server during application startup and store them in embedded Mondog DB. And fetch data from DB for request coming for getArtist API. This approach has lot of drawbacks like it will slow down the application startup and we might need to restart application whenever there is an update of data in upstream server. 
-2. Design microservices architecture, where we will have artist, events and venus as a differnt services. When request comes to artist api, it will make a call to artist service (but ideally it should take artist data from DB, since current request is in artist service only) to fetch artist details, then it wil make a call to events service to fetch events information and then make a call to venues service to fetch venue details.
+1. **First Approach:** Load all data related to artists, events and venues from upstream server during application startup and store them in embedded Mondog DB. And fetch data from DB for every request coming for getArtist API. This approach has lot of drawbacks like it will increase the application startup time and we might need to restart application whenever there is an update of data in upstream server. 
+2. **Second Approach:** Design microservices architecture, where we will have artist, events and venus as differnt services. When request comes to artist api, it will make a call to artist service (but ideally it should take artist data from DB, since current request is in artist service only) to fetch artist details, then it wil make a call to events service to fetch events information and then make a call to venues service to fetch venue details.
 
 I have taken **2nd approach** to implement the solution and below are some highlights of the implementation.
 1. Have used Spring Webflux (which is non blocking web framework) to implement the solution.
